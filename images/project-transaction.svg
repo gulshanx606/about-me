@@ -1,0 +1,52 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow5">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="200" fill="url(#grad5)" opacity="0.1"/>
+  
+  <!-- Monitor screen -->
+  <rect x="140" y="180" width="232" height="160" rx="12" fill="url(#grad5)" opacity="0.15"/>
+  <rect x="140" y="180" width="232" height="160" rx="12" fill="none" stroke="url(#grad5)" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Transaction flow lines -->
+  <path d="M 170 220 L 342 220" stroke="#38bdf8" stroke-width="2" opacity="0.4"/>
+  <path d="M 170 250 L 342 250" stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+  <path d="M 170 280 L 280 280" stroke="#ef4444" stroke-width="3" filter="url(#glow5)"/>
+  <path d="M 170 310 L 342 310" stroke="#38bdf8" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Alert icon (shield with exclamation) -->
+  <path d="M 256 200 L 286 214 L 286 244 Q 286 264 256 274 Q 226 264 226 244 L 226 214 Z" 
+        fill="url(#grad5)" opacity="0.2"/>
+  <path d="M 256 200 L 286 214 L 286 244 Q 286 264 256 274 Q 226 264 226 244 L 226 214 Z" 
+        fill="none" stroke="#ef4444" stroke-width="3" filter="url(#glow5)"/>
+  
+  <!-- Exclamation mark inside shield -->
+  <line x1="256" y1="225" x2="256" y2="245" stroke="#ef4444" stroke-width="3" stroke-linecap="round" filter="url(#glow5)"/>
+  <circle cx="256" cy="255" r="3" fill="#ef4444" filter="url(#glow5)"/>
+  
+  <!-- Alert indicator (red dot) -->
+  <circle cx="290" cy="280" r="8" fill="#ef4444" filter="url(#glow5)"/>
+  <circle cx="290" cy="280" r="14" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Monitoring waves -->
+  <path d="M 160 200 Q 170 195 180 200 T 200 200" stroke="#38bdf8" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 160 330 Q 170 325 180 330 T 200 330" stroke="#38bdf8" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  
+  <!-- Data stream particles -->
+  <circle cx="200" cy="280" r="3" fill="#ef4444" filter="url(#glow5)"/>
+  <circle cx="230" cy="280" r="3" fill="#ef4444" opacity="0.7"/>
+  <circle cx="250" cy="280" r="3" fill="#ef4444" opacity="0.5"/>
+</svg>

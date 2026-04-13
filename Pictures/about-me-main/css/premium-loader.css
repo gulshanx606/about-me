@@ -1,0 +1,392 @@
+/* ==========================================
+   PREMIUM PERSONAL PORTFOLIO PRELOADER
+   Custom Design for Data Engineer Portfolio
+   ========================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #020617;
+    --white: #f0f0f8;
+    --primary: #38bdf8;      /* Cyan */
+    --secondary: #6366f1;    /* Indigo */
+    --muted: rgba(255,255,255,0.35);
+}
+
+body.ready {
+    overflow-y: auto;
+}
+
+/* ══════════════════════════
+   PRELOADER
+══════════════════════════ */
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 36px;
+    transition: opacity 0.7s ease, 
+                visibility 0.7s ease,
+                transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+#preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.05);
+}
+
+/* Optional: Subtle blue gradient background glow */
+#preloader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(
+        ellipse,
+        rgba(56, 189, 248, 0.08) 0%,
+        rgba(99, 102, 241, 0.05) 40%,
+        transparent 70%
+    );
+    pointer-events: none;
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* — Corner brackets — */
+.bracket {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+}
+
+.bracket::before,
+.bracket::after {
+    content: '';
+    position: absolute;
+    background: rgba(56, 189, 248, 0.5);
+}
+
+.bracket::before {
+    width: 100%;
+    height: 1px;
+    top: 0;
+    left: 0;
+}
+
+.bracket::after {
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.bracket.tl {
+    top: 28px;
+    left: 28px;
+}
+
+.bracket.tr {
+    top: 28px;
+    right: 28px;
+    transform: scaleX(-1);
+}
+
+.bracket.bl {
+    bottom: 28px;
+    left: 28px;
+    transform: scaleY(-1);
+}
+
+.bracket.br {
+    bottom: 28px;
+    right: 28px;
+    transform: scale(-1, -1);
+}
+
+/* — Logo — */
+.pre-logo {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    letter-spacing: 0.25em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+    position: relative;
+    line-height: 1;
+    user-select: none;
+}
+
+.pre-logo-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    color: var(--white);
+    white-space: nowrap;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.pre-logo-fill.reveal {
+    clip-path: inset(0% 0 0 0);
+}
+
+/* — Morphing Liquid Ring Loader — */
+.loader-ring {
+    position: relative;
+    width: 72px;
+    height: 72px;
+}
+
+.loader-ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: ring-spin 2s linear infinite;
+    filter: drop-shadow(0 0 8px var(--primary));
+}
+
+.ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 2;
+}
+
+.ring-arc {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 180 226;
+    stroke-dashoffset: 0;
+    animation: arc-chase 2s ease-in-out infinite;
+}
+
+.ring-arc.a1 {
+    stroke: var(--primary);
+    filter: drop-shadow(0 0 6px var(--primary));
+}
+
+.ring-arc.a2 {
+    stroke: rgba(56, 189, 248, 0.3);
+    stroke-dasharray: 60 346;
+    animation: arc-chase2 2s ease-in-out infinite;
+}
+
+.ring-center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 14px var(--primary),
+                0 0 28px rgba(56, 189, 248, 0.4),
+                0 0 42px rgba(99, 102, 241, 0.2);
+    animation: dot-breathe 2s ease-in-out infinite;
+}
+
+@keyframes ring-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes arc-chase {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dashoffset: -180;
+    }
+    100% {
+        stroke-dashoffset: -406;
+    }
+}
+
+@keyframes arc-chase2 {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dashoffset: -80;
+    }
+    100% {
+        stroke-dashoffset: -406;
+    }
+}
+
+@keyframes dot-breathe {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* — Counter — */
+.pre-count {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+}
+
+.pre-count span {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ══════════════════════════
+   MOBILE OPTIMIZATION
+══════════════════════════ */
+@media (max-width: 768px) {
+    .bracket {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .bracket.tl,
+    .bracket.tr {
+        top: 20px;
+    }
+    
+    .bracket.tl,
+    .bracket.bl {
+        left: 20px;
+    }
+    
+    .bracket.tr,
+    .bracket.br {
+        right: 20px;
+    }
+    
+    .bracket.bl,
+    .bracket.br {
+        bottom: 20px;
+    }
+    
+    .pre-logo {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+    
+    .loader-ring {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .ring-center-dot {
+        width: 5px;
+        height: 5px;
+        box-shadow: 0 0 10px var(--primary),
+                    0 0 20px rgba(56, 189, 248, 0.3);
+    }
+    
+    .pre-count {
+        font-size: 0.6rem;
+    }
+    
+    #preloader::before {
+        width: 400px;
+        height: 300px;
+        opacity: 0.6;
+    }
+    
+    /* Reduce glow intensity on mobile */
+    .loader-ring svg {
+        filter: drop-shadow(0 0 5px var(--primary));
+    }
+    
+    .ring-arc.a1 {
+        filter: drop-shadow(0 0 4px var(--primary));
+    }
+}
+
+@media (max-width: 480px) {
+    .pre-logo {
+        font-size: clamp(2rem, 8vw, 3rem);
+        letter-spacing: 0.2em;
+    }
+    
+    .loader-ring {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #preloader {
+        gap: 28px;
+    }
+    
+    #preloader::before {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+/* ══════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+══════════════════════════ */
+#preloader,
+.loader-ring,
+.ring-arc,
+.ring-center-dot,
+.pre-logo-fill {
+    will-change: auto;
+}
+
+/* GPU acceleration hints */
+.loader-ring svg,
+.ring-center-dot,
+.pre-logo-fill {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    #preloader,
+    .loader-ring svg,
+    .ring-arc,
+    .ring-center-dot,
+    .pre-logo-fill,
+    #preloader::before {
+        animation: none !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .ring-arc {
+        stroke-dasharray: none;
+    }
+}

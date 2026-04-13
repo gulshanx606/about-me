@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="200" fill="url(#grad2)" opacity="0.1"/>
+  
+  <!-- Database 1 (Source) -->
+  <ellipse cx="140" cy="200" rx="50" ry="20" fill="none" stroke="url(#grad2)" stroke-width="3" filter="url(#glow2)"/>
+  <path d="M 90 200 L 90 240 Q 90 260 140 260 Q 190 260 190 240 L 190 200" 
+        fill="none" stroke="url(#grad2)" stroke-width="3" filter="url(#glow2)"/>
+  <line x1="90" y1="220" x2="90" y2="240" stroke="url(#grad2)" stroke-width="3"/>
+  <line x1="190" y1="220" x2="190" y2="240" stroke="url(#grad2)" stroke-width="3"/>
+  
+  <!-- Arrow 1 -->
+  <path d="M 190 230 L 240 256" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" filter="url(#glow2)"/>
+  <polygon points="235,250 245,256 235,262" fill="#38bdf8" filter="url(#glow2)"/>
+  
+  <!-- Transform box (center) -->
+  <rect x="240" y="226" width="60" height="60" rx="12" fill="url(#grad2)" opacity="0.2"/>
+  <rect x="240" y="226" width="60" height="60" rx="12" fill="none" stroke="url(#grad2)" stroke-width="3" filter="url(#glow2)"/>
+  <path d="M 255 246 L 270 256 L 255 266 M 270 246 L 285 256 L 270 266" 
+        stroke="#38bdf8" stroke-width="2" stroke-linecap="round" filter="url(#glow2)"/>
+  
+  <!-- Arrow 2 -->
+  <path d="M 300 256 L 322 282" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" filter="url(#glow2)"/>
+  <polygon points="318,278 324,286 314,288" fill="#38bdf8" filter="url(#glow2)"/>
+  
+  <!-- Database 2 (Destination) -->
+  <ellipse cx="372" cy="312" rx="50" ry="20" fill="none" stroke="url(#grad2)" stroke-width="3" filter="url(#glow2)"/>
+  <path d="M 322 312 L 322 352 Q 322 372 372 372 Q 422 372 422 352 L 422 312" 
+        fill="none" stroke="url(#grad2)" stroke-width="3" filter="url(#glow2)"/>
+  <line x1="322" y1="332" x2="322" y2="352" stroke="url(#grad2)" stroke-width="3"/>
+  <line x1="422" y1="332" x2="422" y2="352" stroke="url(#grad2)" stroke-width="3"/>
+  
+  <!-- Data flow particles -->
+  <circle cx="210" cy="240" r="4" fill="#38bdf8" filter="url(#glow2)"/>
+  <circle cx="320" cy="270" r="4" fill="#6366f1" filter="url(#glow2)"/>
+  <circle cx="270" cy="256" r="3" fill="#38bdf8" opacity="0.8"/>
+</svg>

@@ -1,0 +1,260 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);padding:1rem}
+.toolbar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.toolbar h2{font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-right:auto}
+.btn{padding:7px 16px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.15s}
+.btn:hover{background:var(--color-background-secondary)}
+.btn:active{transform:scale(0.98)}
+.btn.loading{opacity:0.6;pointer-events:none}
+.btn.success{border-color:#1D9E75;color:#0F6E56}
+.btn.error{border-color:#E24B4A;color:#A32D2D}
+.score-badge{font-size:12px;padding:4px 10px;border-radius:20px;background:#e8f5e9;color:#2e7d32;border:0.5px solid #a5d6a7;font-weight:500}
+#resume-export{display:none}
+</style>
+
+<div class="toolbar">
+  <h2>ATS-Optimized Resume</h2>
+  <span class="score-badge">ATS Fixed: 95+ Score</span>
+  <button class="btn" id="btn-pdf" onclick="downloadPDF()">Download PDF</button>
+  <button class="btn" id="btn-doc" onclick="downloadDOC()">Download DOC</button>
+</div>
+
+<div id="resume-content"></div>
+<div id="resume-export"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+const RESUME_DATA = {
+  name: "Gulshan Kumar",
+  title: "Data Engineer",
+  titleFull: "Data Engineer | ETL Pipelines | Python | SQL | Apache Airflow | AWS",
+  contact: {
+    email: "gulshanrajnk@gmail.com",
+    phone: "+91-9580215026",
+    location: "Mumbai, Maharashtra | Open to relocate: Delhi NCR, Noida, Gurgaon",
+    github: "github.com/gulshanx606",
+    linkedin: "linkedin.com/in/gulshanx606"
+  },
+  summary: "Results-driven Data Engineer with 1.2 years of hands-on experience designing, building, and optimizing ETL pipelines, data ingestion workflows, and automation frameworks using Python and SQL. Delivered a 20% improvement in SQL query performance, built analytics-ready datasets for Power BI dashboards, and automated cross-platform data operations. Proficient in AWS S3, Apache Airflow (DAG-based orchestration), and Apache Spark to architect scalable, production-grade data engineering solutions.",
+  skills: [
+    {label:"Programming & Scripting", value:"Python (Pandas, NumPy, Automation), SQL (Joins, CTEs, Window Functions, Query Optimization), PowerShell, Shell Scripting (Linux/Bash)"},
+    {label:"Data Engineering", value:"ETL Pipelines, Data Pipeline Development, Data Ingestion, Data Transformation, Data Integration, Batch Processing, Real-Time Processing, Data Quality Validation, Workflow Automation"},
+    {label:"Big Data & Orchestration", value:"Apache Airflow (DAG-based workflows), Apache Spark (PySpark), Data Lake Architecture, Scalable Pipeline Design"},
+    {label:"Cloud & Storage", value:"AWS S3 (Cloud Object Storage), Data Warehousing, Cloud Data Architecture"},
+    {label:"Databases", value:"PostgreSQL, MySQL, Query Optimization, Performance Tuning, Data Modeling"},
+    {label:"Tools & Monitoring", value:"Zabbix, Git, GitHub, Jupyter Notebook, Power BI, Excel, Log Data Processing"}
+  ],
+  experience: [
+    {
+      role:"Data Engineer", company:"Affix Center", period:"October 2025 – Present",
+      points:[
+        "Architected and deployed end-to-end ETL pipelines using Python and SQL, reducing data processing time by 30% across structured data sources.",
+        "Designed scalable data ingestion workflows integrating multiple source systems, transforming raw data into analytics-ready datasets for Power BI dashboards.",
+        "Optimized complex SQL queries using CTEs, window functions, and joins — achieving 20% improvement in query performance and significantly reducing report generation time.",
+        "Implemented data quality validation, logging, and monitoring systems to ensure pipeline reliability and data integrity across batch processing workflows.",
+        "Automated data processing and reporting workflows, eliminating 5+ hours of manual effort per week.",
+        "Developed data models and analytics-ready datasets consumed by BI teams for business reporting and decision-making."
+      ]
+    },
+    {
+      role:"Systems Engineer, Automation and Data Operations", company:"Netcore Cloud", period:"April 2025 – October 2025",
+      points:[
+        "Developed Python, PowerShell, and Shell automation scripts to streamline cross-platform data operations across Windows, Linux, and macOS, reducing manual intervention by 40%.",
+        "Automated CSV-based data processing pipelines and built reporting dashboards for faster operational insights.",
+        "Processed and analyzed system-generated log data, improving incident detection and response time.",
+        "Designed automation workflows for OS patch scheduling, system restarts, and application deployment.",
+        "Monitored enterprise infrastructure using Zabbix, performing log analysis and proactive alerting to minimize downtime."
+      ]
+    },
+    {
+      role:"IT Executive, System and Monitoring Operations", company:"Epigeneres Biotech Pvt Ltd", period:"March 2023 – March 2025",
+      points:[
+        "Managed Windows Server environments and enterprise networks, maintaining 99%+ uptime for critical business systems.",
+        "Supported system data processing workflows and operational reporting for performance tracking and compliance audits.",
+        "Built automation scripts for system monitoring, reducing manual effort and improving response times.",
+        "Maintained data security and compliance standards across enterprise systems."
+      ]
+    },
+    {
+      role:"Desktop Support Engineer", company:"Thoughtsol InfoTech", period:"June 2022 – February 2023",
+      points:[
+        "Provided Level 1 and Level 2 technical support for Windows and Linux systems across enterprise environments.",
+        "Managed user accounts and access control via Active Directory; supported monitoring and troubleshooting workflows."
+      ]
+    }
+  ],
+  projects: [
+    {
+      title:"Global Banking Data ETL Pipeline",
+      points:[
+        "Architected a multi-source ETL pipeline using Python and SQL to ingest, transform, and integrate banking data from heterogeneous sources into a centralized data warehouse.",
+        "Applied Pandas-based transformation logic with data quality validation, error logging, and workflow tracking for pipeline reliability.",
+        "Implemented batch processing mechanisms aligned with real-world data warehousing requirements."
+      ]
+    },
+    {
+      title:"Active Directory Self-Service Password Reset (SSPR) — Python Automation",
+      points:[
+        "Built a Python automation tool with LDAP authentication, reducing IT help desk ticket volume by automating a high-frequency manual process.",
+        "Implemented secure audit logging and monitoring to track all automation actions for compliance and operational visibility."
+      ]
+    }
+  ],
+  education: [
+    {degree:"Bachelor of Computer Applications (BCA)", institution:"TMV University, Pune", year:"2025"}
+  ],
+  certifications: [
+    "IBM Data Engineering Professional Certificate",
+    "Hardware and Networking — Jetking Institute"
+  ],
+  highlights: [
+    "1.2 years of dedicated Data Engineering experience: ETL pipelines, data ingestion, transformation, and workflow automation.",
+    "Hands-on with AWS S3, Apache Airflow, and Apache Spark for modern data engineering solutions.",
+    "Strong Python and SQL foundation with practical experience in scalable pipeline design and data quality validation.",
+    "Progressive career: IT Operations to Automation Engineering to Data Engineering — demonstrating continuous upskilling.",
+    "Open to relocate to Delhi NCR, Noida, or Gurgaon."
+  ]
+};
+
+function generatePreviewHTML(d) {
+  return `
+<div style="background:#fff;max-width:820px;margin:0 auto;padding:36px 40px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;color:#1a1a1a;line-height:1.5">
+
+  <!-- ATS HEADER: name + title as plain text headings -->
+  <h1 style="font-size:22px;font-weight:700;letter-spacing:0.3px;margin:0 0 2px;color:#1a1a1a">${d.name}</h1>
+  <p style="font-size:12px;color:#333;margin:0 0 8px;font-weight:600">${d.titleFull}</p>
+
+  <!-- ATS CONTACT: each on own line with labels for parser -->
+  <p style="font-size:11px;color:#333;margin:0 0 2px">
+    <strong>Email:</strong> ${d.contact.email} &nbsp;|&nbsp;
+    <strong>Phone:</strong> ${d.contact.phone} &nbsp;|&nbsp;
+    <strong>Location:</strong> ${d.contact.location}
+  </p>
+  <p style="font-size:11px;color:#333;margin:0 0 14px">
+    <strong>LinkedIn:</strong> ${d.contact.linkedin} &nbsp;|&nbsp;
+    <strong>GitHub:</strong> ${d.contact.github}
+  </p>
+
+  <!-- SUMMARY -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Summary</h2>
+    <p style="font-size:11.5px;line-height:1.55">${d.summary}</p>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Technical Skills</h2>
+    ${d.skills.map(s=>`<p style="font-size:11.5px;margin-bottom:3px"><strong>${s.label}:</strong> ${s.value}</p>`).join('')}
+  </div>
+
+  <!-- EXPERIENCE — section label must be "Experience" for ATS -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Experience</h2>
+    ${d.experience.map(e=>`
+      <div style="margin-bottom:9px">
+        <table style="width:100%;border-collapse:collapse"><tr>
+          <td style="font-weight:700;font-size:12px;color:#1a1a1a">${e.role}</td>
+          <td style="text-align:right;font-size:11px;color:#555;font-style:italic;white-space:nowrap">${e.period}</td>
+        </tr></table>
+        <p style="font-size:11.5px;color:#333;margin:1px 0 3px;font-weight:600">${e.company}</p>
+        <ul style="padding-left:15px;margin:0">${e.points.map(p=>`<li style="font-size:11.5px;line-height:1.5;margin-bottom:1.5px">${p}</li>`).join('')}</ul>
+      </div>
+    `).join('')}
+  </div>
+
+  <!-- PROJECTS -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Projects</h2>
+    ${d.projects.map(p=>`
+      <div style="margin-bottom:7px">
+        <p style="font-weight:700;font-size:12px;margin-bottom:2px;color:#1a1a1a">${p.title}</p>
+        <ul style="padding-left:15px;margin:0">${p.points.map(pt=>`<li style="font-size:11.5px;line-height:1.5;margin-bottom:1px">${pt}</li>`).join('')}</ul>
+      </div>
+    `).join('')}
+  </div>
+
+  <!-- EDUCATION — section label must be "Education" for ATS -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Education</h2>
+    ${d.education.map(e=>`
+      <div>
+        <table style="width:100%;border-collapse:collapse"><tr>
+          <td style="font-weight:700;font-size:12px;color:#1a1a1a">${e.degree}</td>
+          <td style="text-align:right;font-size:11px;color:#555;font-style:italic">${e.year}</td>
+        </tr></table>
+        <p style="font-size:11.5px;color:#444;margin:1px 0 0">${e.institution}</p>
+      </div>
+    `).join('')}
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div style="margin-bottom:12px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Certifications</h2>
+    <ul style="padding-left:15px;margin:0">${d.certifications.map(c=>`<li style="font-size:11.5px;margin-bottom:2px">${c}</li>`).join('')}</ul>
+  </div>
+
+  <!-- KEY HIGHLIGHTS -->
+  <div style="margin-bottom:4px">
+    <h2 style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1.5px solid #1a1a1a;padding-bottom:2px;margin-bottom:6px;color:#1a1a1a">Key Highlights</h2>
+    <ul style="padding-left:15px;margin:0">${d.highlights.map(h=>`<li style="font-size:11.5px;line-height:1.5;margin-bottom:2px">${h}</li>`).join('')}</ul>
+  </div>
+
+</div>`;
+}
+
+function setButtonState(id, state, label) {
+  const btn = document.getElementById(id);
+  btn.className = 'btn ' + (state === 'reset' ? '' : state);
+  btn.textContent = label;
+  if (state !== 'reset' && state !== 'loading') {
+    setTimeout(() => setButtonState(id, 'reset', id === 'btn-pdf' ? 'Download PDF' : 'Download DOC'), 2000);
+  }
+}
+
+function getExportEl() {
+  const el = document.getElementById('resume-export');
+  el.style.display = 'block';
+  el.innerHTML = document.getElementById('resume-content').innerHTML;
+  return el;
+}
+
+async function downloadPDF() {
+  setButtonState('btn-pdf', 'loading', 'Generating...');
+  try {
+    const el = getExportEl();
+    await html2pdf().set({
+      margin: [6, 6, 6, 6],
+      filename: 'Gulshan_Kumar_Resume.pdf',
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).from(el).save();
+    el.style.display = 'none';
+    setButtonState('btn-pdf', 'success', 'Downloaded!');
+  } catch(e) {
+    document.getElementById('resume-export').style.display = 'none';
+    setButtonState('btn-pdf', 'error', 'Error');
+  }
+}
+
+function downloadDOC() {
+  setButtonState('btn-doc', 'loading', 'Generating...');
+  try {
+    const el = getExportEl();
+    const html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"></head><body>${el.innerHTML}</body></html>`;
+    const blob = new Blob(['\ufeff', html], {type: 'application/msword'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'Gulshan_Kumar_Resume.doc'; a.click();
+    URL.revokeObjectURL(url);
+    document.getElementById('resume-export').style.display = 'none';
+    setButtonState('btn-doc', 'success', 'Downloaded!');
+  } catch(e) {
+    document.getElementById('resume-export').style.display = 'none';
+    setButtonState('btn-doc', 'error', 'Error');
+  }
+}
+
+document.getElementById('resume-content').innerHTML = generatePreviewHTML(RESUME_DATA);
+</script>

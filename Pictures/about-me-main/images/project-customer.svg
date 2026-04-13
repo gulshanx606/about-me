@@ -1,0 +1,49 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow4">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="200" fill="url(#grad4)" opacity="0.1"/>
+  
+  <!-- User 1 (back left) -->
+  <circle cx="200" cy="220" r="30" fill="url(#grad4)" opacity="0.2"/>
+  <circle cx="200" cy="220" r="30" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <path d="M 160 280 Q 160 250 200 250 Q 240 250 240 280" 
+        fill="none" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  
+  <!-- User 2 (back right) -->
+  <circle cx="312" cy="220" r="30" fill="url(#grad4)" opacity="0.2"/>
+  <circle cx="312" cy="220" r="30" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <path d="M 272 280 Q 272 250 312 250 Q 352 250 352 280" 
+        fill="none" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  
+  <!-- User 3 (front center - highlighted) -->
+  <circle cx="256" cy="270" r="38" fill="url(#grad4)" opacity="0.3"/>
+  <circle cx="256" cy="270" r="38" fill="none" stroke="#38bdf8" stroke-width="3" filter="url(#glow4)"/>
+  <path d="M 208 340 Q 208 300 256 300 Q 304 300 304 340" 
+        fill="none" stroke="#38bdf8" stroke-width="3" filter="url(#glow4)"/>
+  
+  <!-- Analytics graph overlay -->
+  <path d="M 180 200 L 190 195 L 210 185 L 230 190 L 250 175" 
+        stroke="#38bdf8" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- Data points around users -->
+  <circle cx="170" cy="250" r="4" fill="#6366f1" filter="url(#glow4)"/>
+  <circle cx="340" cy="250" r="4" fill="#6366f1" filter="url(#glow4)"/>
+  <circle cx="256" cy="340" r="4" fill="#38bdf8" filter="url(#glow4)"/>
+  
+  <!-- Engagement rings -->
+  <circle cx="256" cy="270" r="120" fill="none" stroke="url(#grad4)" stroke-width="2" opacity="0.2" stroke-dasharray="8,8"/>
+  <circle cx="256" cy="270" r="150" fill="none" stroke="url(#grad4)" stroke-width="1" opacity="0.1" stroke-dasharray="6,6"/>
+</svg>

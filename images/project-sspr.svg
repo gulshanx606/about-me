@@ -1,0 +1,37 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with glassmorphism -->
+  <circle cx="256" cy="256" r="200" fill="url(#grad1)" opacity="0.1"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Lock body -->
+  <rect x="176" y="240" width="160" height="140" rx="20" fill="url(#grad1)" opacity="0.2"/>
+  <rect x="176" y="240" width="160" height="140" rx="20" fill="none" stroke="url(#grad1)" stroke-width="4" filter="url(#glow)"/>
+  
+  <!-- Lock shackle -->
+  <path d="M 206 240 L 206 180 Q 206 140 256 140 Q 306 140 306 180 L 306 240" 
+        fill="none" stroke="url(#grad1)" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Keyhole -->
+  <circle cx="256" cy="290" r="16" fill="#38bdf8" filter="url(#glow)"/>
+  <rect x="248" y="290" width="16" height="40" rx="8" fill="#38bdf8" filter="url(#glow)"/>
+  
+  <!-- OTP dots (verification concept) -->
+  <circle cx="216" cy="350" r="6" fill="#6366f1" opacity="0.8"/>
+  <circle cx="246" cy="350" r="6" fill="#6366f1" opacity="0.8"/>
+  <circle cx="266" cy="350" r="6" fill="#38bdf8" filter="url(#glow)"/>
+  <circle cx="296" cy="350" r="6" fill="#6366f1" opacity="0.8"/>
+</svg>

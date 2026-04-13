@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Engineer Portfolio - Python, SQL, ETL">
+    <title>Gulshan Kumar | Data Engineer</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://api.emailjs.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS (Minified for Production) -->
+    <link rel="stylesheet" href="css/style.min.css?v=9">
+    <link rel="stylesheet" href="css/animations.min.css?v=4">
+    <link rel="stylesheet" href="css/premium-loader.min.css?v=4">
+</head>
+<body class="dark">
+    
+    <!-- Premium Personal Portfolio Preloader -->
+    <div id="preloader">
+        <!-- Corner Brackets -->
+        <div class="bracket tl"></div>
+        <div class="bracket tr"></div>
+        <div class="bracket bl"></div>
+        <div class="bracket br"></div>
+
+        <!-- Logo with Clip Reveal -->
+        <div class="pre-logo">
+            GK
+            <div class="pre-logo-fill" id="logoFill">GK</div>
+        </div>
+
+        <!-- Morphing Liquid Ring Loader -->
+        <div class="loader-ring">
+            <svg viewBox="0 0 72 72">
+                <circle class="ring-track" cx="36" cy="36" r="32"/>
+                <circle class="ring-arc a2" cx="36" cy="36" r="32"/>
+                <circle class="ring-arc a1" cx="36" cy="36" r="32"/>
+            </svg>
+            <div class="ring-center-dot"></div>
+        </div>
+
+        <!-- Loading Counter -->
+        <div class="pre-count">Initializing Experience <span id="pct">0</span>%</div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress-bar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Theme Switcher - Glass Toggle -->
+    <div class="theme-toggle-container" id="theme-toggle-container">
+        <div class="theme-toggle" id="theme-toggle">
+            <div class="toggle-icon sun-icon">
+                <i class="fas fa-sun"></i>
+            </div>
+            <div class="toggle-icon moon-icon">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="toggle-knob"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-text">GK</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="gradient-text">Gulshan Kumar</span>
+                </h1>
+                <div class="typing-wrapper">
+                    <h2 class="hero-subtitle">
+                        <span id="typing-text"></span>
+                        <span class="cursor-blink">|</span>
+                    </h2>
+                </div>
+                <p class="hero-description">
+                    Transforming data into actionable insights with Python, SQL, and ETL workflows
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <div class="resume-dropdown">
+                        <button class="btn btn-primary dropdown-toggle" id="resumeDropdown">
+                            <i class="fas fa-file-download"></i>
+                            <span>Download Resume</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" id="resumeDropdownMenu">
+                            <button id="hero-download-pdf" class="dropdown-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>PDF Format</span>
+                            </button>
+                            <button id="hero-download-docx" class="dropdown-item">
+                                <i class="fas fa-file-word"></i>
+                                <span>DOC Format</span>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/gulshanx606/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/gulshan_x_26" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919580215026" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gulshanrajnk@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+919580215026" class="social-link" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">About Me</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image-wrapper fade-up">
+                    <div class="about-image glass card-3d">
+                        <div class="gk-avatar">
+                            <span class="gk-avatar-text">GK</span>
+                        </div>
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <div class="about-text fade-up">
+                    <h3 class="about-heading">Data Engineer | ETL Pipelines | Python | SQL</h3>
+                    <p class="about-description">
+                        Results-driven Data Engineer with 1.2 years of hands-on experience designing, building, and optimizing ETL pipelines, 
+                        data ingestion workflows, and automation frameworks using Python and SQL. Delivered a 20% improvement in SQL query 
+                        performance, built analytics-ready datasets for Power BI dashboards, and automated cross-platform data operations.
+                    </p>
+                    <p class="about-description">
+                        Proficient in AWS S3, Apache Airflow (DAG-based orchestration), and Apache Spark to architect scalable, 
+                        production-grade data engineering solutions.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item glass">
+                            <h4 class="stat-number" data-target="15">0</h4>
+                            <p class="stat-label">Projects Delivered</p>
+                        </div>
+                        <div class="stat-item glass">
+                            <h4 class="stat-number" data-target="6">0</h4>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat-item glass">
+                            <h4 class="stat-number" data-target="3">0</h4>
+                            <p class="stat-label">Certifications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="skill-title">Python & SQL</h3>
+                    <p class="skill-description">Python (Pandas, NumPy), SQL (Joins, CTEs, Window Functions), PostgreSQL, MySQL</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <h3 class="skill-title">ETL & Data Pipelines</h3>
+                    <p class="skill-description">Data cleaning, transformation, validation, batch processing, Apache Airflow</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="skill-title">Analytics & BI</h3>
+                    <p class="skill-description">Power BI, Excel (Advanced), Business reporting, Data visualization</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="skill-title">Cloud & Big Data</h3>
+                    <p class="skill-description">AWS S3, Apache Spark (Beginner), Cloud data storage and processing</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="70"></div>
+                    </div>
+                </div>
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">Development Tools</h3>
+                    <p class="skill-description">Git, GitHub, Jupyter Notebook, VS Code, Shell scripting (Basic)</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card glass card-3d fade-up">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="skill-title">Infrastructure & IT</h3>
+                    <p class="skill-description">Active Directory, LDAP, Network management, Server administration</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Resume</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">Download my professional resume</p>
+            </div>
+            
+            <!-- Download Buttons -->
+            <div class="resume-download-buttons fade-up">
+                <button id="download-pdf" class="btn btn-primary resume-btn">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Download PDF</span>
+                </button>
+                <button id="download-docx" class="btn btn-secondary resume-btn">
+                    <i class="fas fa-file-word"></i>
+                    <span>Download DOCX</span>
+                </button>
+            </div>
+
+            <!-- Resume Preview (populated by resume-data.js) -->
+            <div id="resume-content" class="resume-preview glass fade-up"></div>
+        </div>
+    </section>
+
+    <!-- Hidden Resume Export Template (populated by resume-data.js) -->
+    <div id="resume-export" style="display:none;"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card glass card-3d fade-up">
+                    <div class="project-image">
+                        <img src="images/project-sspr.svg" alt="AD Password Reset Portal" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Active Directory Self-Service Password Reset Portal</h3>
+                        <p class="project-description">
+                            Python-based secure password reset tool with LDAP integration, OTP verification via email, and comprehensive logging for security
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LDAP</span>
+                            <span class="tag">SMTP</span>
+                            <span class="tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass card-3d fade-up">
+                    <div class="project-image">
+                        <img src="images/project-etl.svg" alt="Banking Market Data ETL" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Global Banking Market Data ETL Pipeline</h3>
+                        <p class="project-description">
+                            Web scraping and data transformation system for multi-currency banking data, with automated ETL workflows and SQL storage
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">BeautifulSoup</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass card-3d fade-up">
+                    <div class="project-image">
+                        <img src="images/project-revenue.svg" alt="Order & Revenue Analytics" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Order & Revenue Analytics System</h3>
+                        <p class="project-description">
+                            Built end-to-end ETL pipelines for order processing, SQL-based revenue analysis, and Power BI dashboards for business insights
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">ETL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass card-3d fade-up">
+                    <div class="project-image">
+                        <img src="images/project-customer.svg" alt="Customer Analytics" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Activity & Retention Analytics</h3>
+                        <p class="project-description">
+                            Processed customer engagement data to identify patterns, built retention models, and generated actionable reports using Python and SQL
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass card-3d fade-up">
+                    <div class="project-image">
+                        <img src="images/project-transaction.svg" alt="Transaction Monitoring" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/gulshanx606" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Financial Transaction Monitoring System</h3>
+                        <p class="project-description">
+                            Data validation engine for detecting transaction anomalies, with SQL-based storage and automated reporting for compliance
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Data Validation</span>
+                            <span class="tag">Logging</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">Have a project in mind? Let's discuss how I can help!</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-up">
+                    <div class="contact-item glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <button class="contact-reveal-btn" id="reveal-email"
+                                data-u="gulshanrajnk" data-d="gmail" data-t="com"
+                                aria-label="Click to send email">
+                                <i class="fas fa-paper-plane"></i> Send Email
+                            </button>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <button class="contact-reveal-btn" id="reveal-phone"
+                                data-c="+91" data-n="9580" data-x="215026"
+                                aria-label="Click to call">
+                                <i class="fas fa-phone"></i> +91 958·····026
+                            </button>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Mumbai, Maharashtra (Open to Delhi NCR)</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form glass fade-up" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required maxlength="100" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required maxlength="254" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required maxlength="200" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required maxlength="2000" autocomplete="off"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Gulshan. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Resume Download Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Premium Loader (Load First) -->
+    <script src="js/premium-loader.min.js?v=1"></script>
+    
+    <!-- Resume Data — single source of truth -->
+    <script src="js/resume-data.min.js?v=2"></script>
+    <!-- Resume Download Handler -->
+    <script src="js/resume-download.min.js?v=3"></script>
+    
+    <!-- Contact Form Handler -->
+    <script src="js/contact-form.min.js?v=1"></script>
+    
+    <!-- Main Scripts -->
+    <script src="js/main.min.js?v=1"></script>
+    <script src="js/animations.min.js?v=1"></script>
+    <script src="js/theme-switcher.min.js?v=1"></script>
+</body>
+</html>
